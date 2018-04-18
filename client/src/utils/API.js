@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export default {
-  // Gets all books
+  // Gets all article
   getBooks: function() {
     return axios.get("/api/books");
   },
@@ -16,5 +16,14 @@ export default {
   // Saves a book to the database
   saveBook: function(bookData) {
     return axios.post("/api/books", bookData);
-  }
+  },
+  updateBook: function(bookData) {
+  let id = bookData._id;
+  let bookDataNew = {
+       title: bookData.title,
+       author: bookData.author,
+       synopsis: bookData.synopsis
+  };
+  return axios.put("/api/books/" + id , bookDataNew);
+}
 };
